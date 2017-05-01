@@ -322,11 +322,11 @@ public final class JWTCreator {
     }
 
     private String sign() throws SignatureGenerationException {
-        String header = Base64.encodeBase64URLSafeString((headerJson.getBytes(StandardCharsets.UTF_8)));
-        String payload = Base64.encodeBase64URLSafeString((payloadJson.getBytes(StandardCharsets.UTF_8)));
+        String header = Base64.encodeBase64URLSafeString((headerJson.getBytes(Charset.forName("UTF-8")));
+        String payload = Base64.encodeBase64URLSafeString((payloadJson.getBytes(Charset.forName("UTF-8")));
         String content = String.format("%s.%s", header, payload);
 
-        byte[] signatureBytes = algorithm.sign(content.getBytes(StandardCharsets.UTF_8));
+        byte[] signatureBytes = algorithm.sign(content.getBytes(Charset.forName("UTF-8"));
         String signature = Base64.encodeBase64URLSafeString((signatureBytes));
 
         return String.format("%s.%s", content, signature);
